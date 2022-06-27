@@ -3,5 +3,351 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "headerApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/header-app",
+      "sourceRoot": "projects/header-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/header-app",
+            "index": "projects/header-app/src/index.html",
+            "main": "projects/header-app/src/main.ts",
+            "polyfills": "projects/header-app/src/polyfills.ts",
+            "tsConfig": "projects/header-app/tsconfig.app.json",
+            "assets": [
+              "projects/header-app/src/favicon.ico",
+              "projects/header-app/src/assets"
+            ],
+            "styles": [
+              "projects/header-app/src/styles.css"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/header-app/src/environments/environment.ts",
+                  "with": "projects/header-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "headerApp:build:production"
+            },
+            "development": {
+              "browserTarget": "headerApp:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "headerApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/header-app/src/test.ts",
+            "polyfills": "projects/header-app/src/polyfills.ts",
+            "tsConfig": "projects/header-app/tsconfig.spec.json",
+            "karmaConfig": "projects/header-app/karma.conf.js",
+            "assets": [
+              "projects/header-app/src/favicon.ico",
+              "projects/header-app/src/assets"
+            ],
+            "styles": [
+              "projects/header-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "footerApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/footer-app",
+      "sourceRoot": "projects/footer-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/footer-app",
+            "index": "projects/footer-app/src/index.html",
+            "main": "projects/footer-app/src/main.ts",
+            "polyfills": "projects/footer-app/src/polyfills.ts",
+            "tsConfig": "projects/footer-app/tsconfig.app.json",
+            "assets": [
+              "projects/footer-app/src/favicon.ico",
+              "projects/footer-app/src/assets"
+            ],
+            "styles": [
+              "projects/footer-app/src/styles.css"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/footer-app/src/environments/environment.ts",
+                  "with": "projects/footer-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "footerApp:build:production"
+            },
+            "development": {
+              "browserTarget": "footerApp:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "footerApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/footer-app/src/test.ts",
+            "polyfills": "projects/footer-app/src/polyfills.ts",
+            "tsConfig": "projects/footer-app/tsconfig.spec.json",
+            "karmaConfig": "projects/footer-app/karma.conf.js",
+            "assets": [
+              "projects/footer-app/src/favicon.ico",
+              "projects/footer-app/src/assets"
+            ],
+            "styles": [
+              "projects/footer-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "subApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/sub-app",
+      "sourceRoot": "projects/sub-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/sub-app",
+            "index": "projects/sub-app/src/index.html",
+            "main": "projects/sub-app/src/main.ts",
+            "polyfills": "projects/sub-app/src/polyfills.ts",
+            "tsConfig": "projects/sub-app/tsconfig.app.json",
+            "assets": [
+              "projects/sub-app/src/favicon.ico",
+              "projects/sub-app/src/assets"
+            ],
+            "styles": [
+              "projects/sub-app/src/styles.css"
+            ],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              },
+              "node_modules/rxjs/bundles/rxjs.umd.js",
+              "node_modules/@angular/core/bundles/core.umd.js",
+              "node_modules/@angular/common/bundles/common.umd.js",
+              "node_modules/@angular/common/bundles/common-http.umd.js",
+              "node_modules/@angular/compiler/bundles/compiler.umd.js",
+              "node_modules/@angular/elements/bundles/elements.umd.js",
+              "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
+              "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/sub-app/src/environments/environment.ts",
+                  "with": "projects/sub-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "subApp:build:production"
+            },
+            "development": {
+              "browserTarget": "subApp:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "subApp:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/sub-app/src/test.ts",
+            "polyfills": "projects/sub-app/src/polyfills.ts",
+            "tsConfig": "projects/sub-app/tsconfig.spec.json",
+            "karmaConfig": "projects/sub-app/karma.conf.js",
+            "assets": [
+              "projects/sub-app/src/favicon.ico",
+              "projects/sub-app/src/assets"
+            ],
+            "styles": [
+              "projects/sub-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "subApp"
 }
